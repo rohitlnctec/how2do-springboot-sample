@@ -1,0 +1,7 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      database: subscription-management
+      uri: mongodb://localhost:27017
