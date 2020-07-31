@@ -1,3 +1,5 @@
+project:
+  version: @project.version@
 server:
   port: 8082
 spring:
@@ -5,3 +7,6 @@ spring:
     mongodb:
       database: subscription-management
       uri: mongodb://localhost:27017
+subscription:
+  swagger:
+    baseurl: /

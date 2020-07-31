@@ -74,7 +74,7 @@ public class UserService {
 			logger.error("Get Enterprise response status : {} & body : {}", exception.getStatusCode(),
 					exception.getResponseBodyAsString());
 		} catch (ResourceAccessException resourceAccessException) {
-			throw new ResourceAccessException("Internal Server Error");
+//			throw new ResourceAccessException("Internal Server Error");
 		}
 		
 		return null;

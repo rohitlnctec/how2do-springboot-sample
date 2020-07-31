@@ -17,8 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.how2do.user.management.payload.UserPayload;
 import com.how2do.user.management.services.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/user")
+@Api(value = "/user", tags = "User Management")
 public class UserController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -27,6 +33,11 @@ public class UserController {
 	protected UserService userService;
 
 	@PostMapping(value = "/")
+	@ApiOperation(value = "Create User", notes = "Create new user", tags = { "User Management" })
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "User Created successfully"),
+			@ApiResponse(code = 404, message = "Invalid data"),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	public ResponseEntity<UserPayload> createUser(@RequestBody UserPayload data) {
 
 		logger.info("Receive request to create user");
@@ -46,13 +57,17 @@ public class UserController {
 
 		logger.info("Receive request to update user");
 		
-
-		return new ResponseEntity<>("sdf", HttpStatus.OK);
+		return new ResponseEntity<>("Update Test Success", HttpStatus.OK);
 		
 
 	}
 
 	@GetMapping(value = "/{userId}")
+	@ApiOperation(value = "Get User", notes = "Get user details", tags = { "User Management" })
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "User data"),
+			@ApiResponse(code = 404, message = "Invalid userId"),
+			@ApiResponse(code = 500, message = "Internal server error") })
 	public ResponseEntity<UserPayload> getUser(@PathVariable String userId) {
 
 		logger.info("Receive request to get user");
@@ -71,7 +86,7 @@ public class UserController {
 
 		logger.info("Receive request to delete user");
 
-		return new ResponseEntity<>("Delete Success", HttpStatus.OK);
+		return new ResponseEntity<>("Delete Test Success", HttpStatus.OK);
 
 	}
 }

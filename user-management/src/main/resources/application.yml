@@ -1,7 +1,38 @@
+project:
+  version: @project.version@
 server:
   port: 8081
 spring:
   data:
     mongodb:
       database: user-management
+  profiles:
+    active: dev
+    
+ 
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
       uri: mongodb://localhost:27017
+user:
+  swagger:
+    baseurl: /user
+    
+---
+spring:
+  profiles: stg
+  data:
+    mongodb:
+      uri: mongodb://stg.how3do.com:Password@13.12.1.9:27017
+      
+---
+spring:
+  profiles: prod
+  data:
+    mongodb:
+      uri: mongodb://<prod-url>:<Password>@<IP>:27017
+        
+      
+
